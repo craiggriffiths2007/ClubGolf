@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ClubGolf.Models.MembershipType>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Memberships</h1>
+
+<p>
+    <a asp-action="Create">Add New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AnnualCost)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="tr_style">
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnnualCost)
+            </td>
+                <td align="right">
+                <a asp-action="Details" asp-route-id="@item.MembershipTypeId">View</a> |
+                <a asp-action="Edit" asp-route-id="@item.MembershipTypeId">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@item.MembershipTypeId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

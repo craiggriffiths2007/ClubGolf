@@ -1,0 +1,81 @@
+﻿@model IEnumerable<ClubGolf.Models.Membership>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Billing</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Person.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Person.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AnnualCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MonthlyCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Balance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MembershipActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MembershipType)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Person.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Person.LastName)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnnualCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MonthlyCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Balance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MembershipActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MembershipType.Description)
+            </td>
+
+            <td align="right">
+                <a asp-action="Details" asp-route-id="@item.MembershipId">View</a> |
+                <a asp-action="Edit" asp-route-id="@item.MembershipId">Edit</a> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

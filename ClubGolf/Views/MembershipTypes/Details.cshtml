@@ -1,0 +1,29 @@
+﻿@model ClubGolf.Models.MembershipType
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Membership Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AnnualCost)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AnnualCost)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.MembershipTypeId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

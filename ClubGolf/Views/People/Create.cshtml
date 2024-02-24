@@ -1,0 +1,81 @@
+﻿@model ClubGolf.Models.Person
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Add Person</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateJoined" class="control-label"></label>
+                <input asp-for="DateJoined" class="form-control" />
+                <span asp-validation-for="DateJoined" class="text-danger"></span>
+            </div>
+                        <table class="table">
+                <tr>
+                    <th>Membership</th>
+                    <th>Annual Cost</th>
+                    <th></th>
+                </tr>
+                @{
+                    int cnt = 0;
+                    List<ClubGolf.ViewModels.AssignedMembershipData> memberships = ViewBag.MembershipTypes;
+                
+                    foreach (var membership in memberships)
+                    {
+                        if (cnt++ % 3 == 0)
+                        {
+                            @:</tr><tr>
+                        }
+                        <tr class="tr_style">
+                            <td>
+                                @Html.DisplayFor(modelItem => membership.membershipType.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => membership.membershipType.AnnualCost)
+                            </td>
+                            <td align="right">
+                                    <input type="checkbox" 
+                                                name="selectedMemberships"
+                                                value="@membership.MembershipTypeId"
+                                                @(Html.Raw(membership.Assigned ? "checked=\"checked\"" : "")) />
+                                               
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
